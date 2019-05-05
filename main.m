@@ -43,40 +43,12 @@ alpha = alphaBar / mean_beta;
 Xarr = randn(numOfX, M);
 
 %% 4. Cast watermark
-imageDCT = dct2(image); %DCT the image
-zz = zigzag(imageDCT); %make it linear using zigzag.m
-for i=1:size(watermarks,2)
-    X=Xarr(watermarks(i),:);
-    t=zz(1+L:L+M); %select coefficients to embed watermark
-    tPrime=t+alpha.*abs(t).*X;
-    zz(1+L:L+M)=tPrime;
-end
-watermarkedImageDCT=inv_zigzag(zz,size(image,1),size(image,2));
-watermarkedImage=idct2(watermarkedImageDCT); %inverse DCT
-watermarkedVisualMaskedImage=image.*(1-beta)+beta.*watermarkedImage;
-figure; imshow(watermarkedVisualMaskedImage);
-imwrite(watermarkedVisualMaskedImage,strcat('output/',string(imageIndex),'_2_watermarked_',fileName));
+image1=insertWatermark(image, 'watermarked', 2, watermarks, Xarr, M, L, alpha, beta, imageIndex, fileName);
 
 %% 5. Detect watermark
-dctWatermarkedImage = dct2(watermarkedVisualMaskedImage); %DCT the image
-zz = zigzag(dctWatermarkedImage);
-tStar=zz(1+L:L+M);
-zArr=zeros([1,numOfX]);
-for i=1:numOfX
-    Y=Xarr(i,:);
-    zArr(i)=dot(Y,tStar)/M;
-end
-Tz=alphaBar/(3*M)*sum(abs(tStar),'all');
-figure; plot(1:numOfX,zArr);
-%set(gca, 'YScale', 'log') 
-% if you want to plot in log scale, uncomment this line
-titleString='Normal watermark';
-title(sprintf('%s (\\alpha=%.2f, M=%dk, L=%dk)',titleString,alpha,M/1000,L/1000));
-hline = refline([0 Tz]); hline.Color = [0.6,0.6,0.6];
-legend('response','threshold Tz'); xlabel('Watermarks'); ylabel('Detector Response');
+detectWatermark(image1, 'watermarked', 2, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
-
-
-
-
+%% JPEG compression
+image2=jpegCompress(image1, 'jpegCompressed', 3, imageIndex, fileName);
+detectWatermark(image2, 'jpegCompressed', 3, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
