@@ -68,10 +68,8 @@ for i=1:numOfX
 end
 Tz=alphaBar/(3*M)*sum(abs(tStar),'all');
 figure; plot(1:numOfX,zArr);
-%set(gca, 'YScale', 'log') 
-% if you want to plot in log scale, uncomment this line
 titleString='Normal watermark';
-title(sprintf('%s (\\alpha=%.2f, M=%dk, L=%dk)',titleString,alpha,M/1000,L/1000));
+title(sprintf('%s (\alpha=%.2f, M=%dk, L=%dk)',titleString,alpha,M/1000,L/1000));
 hline = refline([0 Tz]); hline.Color = [0.6,0.6,0.6];
 legend('response','threshold Tz'); xlabel('Watermarks'); ylabel('Detector Response');
 
