@@ -52,3 +52,19 @@ detectWatermark(image1, 'watermarked', 2, numOfX, Xarr, M, L, alpha, alphaBar, i
 image2=jpegCompress(image1, 'jpegCompressed', 3, imageIndex, fileName);
 detectWatermark(image2, 'jpegCompressed', 3, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
+%% low pass filter
+image3=lowPassFilter(image1, 'lowPassFiltered', 4, imageIndex, fileName);
+detectWatermark(image3, 'lowPassFiltered', 4, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
+
+%% median filter
+image4=lowPassFilter(image1, 'medianFiltered', 5, imageIndex, fileName);
+detectWatermark(image4, 'medianFiltered', 5, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
+
+%% histogram equalization
+
+
+
+
+
+
+
