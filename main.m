@@ -61,6 +61,18 @@ image4=lowPassFilter(image1, 'medianFiltered', 5, imageIndex, fileName);
 detectWatermark(image4, 'medianFiltered', 5, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
 %% histogram equalization
+image5=histogramEqualize(image1, 'histogramEqualized', 6, imageIndex, fileName);
+detectWatermark(image5, 'histogramEqualized', 6, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
+
+%% histogram stretching
+image6=histogramStretch(image1, 'histogramStretched', 7, imageIndex, fileName);
+detectWatermark(image6, 'histogramStretched', 7, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
+
+%% gaussian noise
+image7=addGaussianNoise(image1, 'GaussianNoiseAdded', 8, imageIndex, fileName);
+detectWatermark(image7, 'GaussianNoiseAdded', 8, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
+
+
 
 
 
