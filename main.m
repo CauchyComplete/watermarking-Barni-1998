@@ -72,11 +72,9 @@ detectWatermark(image6, 'histogramStretched', 7, numOfX, Xarr, M, L, alpha, alph
 image7=addGaussianNoise(image1, 'GaussianNoiseAdded', 8, imageIndex, fileName);
 detectWatermark(image7, 'GaussianNoiseAdded', 8, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
-
-
-
-
-
+%% dithering
+image8=dithering(image1, 'dithered', 9, imageIndex, fileName);
+detectWatermark(image8, 'dithered', 9, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
 
 
