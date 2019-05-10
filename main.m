@@ -76,5 +76,26 @@ detectWatermark(image7, 'GaussianNoiseAdded', 8, numOfX, Xarr, M, L, alpha, alph
 image8=dithering(image1, 'dithered', 9, imageIndex, fileName);
 detectWatermark(image8, 'dithered', 9, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
+%% resizing
+image9=resize(image1, 'resized', 10, imageIndex, fileName);
+detectWatermark(image9, 'resized', 10, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
+%% cropping
+image10=crop(image1, 'cropped', 11, imageIndex, fileName);
+detectWatermark(image10, 'cropped', 11, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
+%% multiple watermarks
+image11=insertWatermark(image, 'multiple-watermarked', 12, [200,watermarks], Xarr, M, L, alpha, beta, imageIndex, fileName);
+detectWatermark(image11, 'multiple-watermarked', 12, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
+
+%% translation
+image12=translate(image1, 'translated', 13, imageIndex, fileName);
+detectWatermark(image12, 'translated', 13, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
+
+%% resizing with different x and y scale
+image13=resize2(image1, 'resized', 14, imageIndex, fileName);
+detectWatermark(image13, 'resized', 14, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
+
+%% rotation
+image14=rotate(image1, 'rotated', 15, imageIndex, fileName);
+detectWatermark(image14, 'rotated', 15, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
