@@ -11,7 +11,7 @@ alphaBar = 0.2;
 M=16000; % The number of random numbers in one watermark.
 L=16000; % The number of skipped coefficients.
 numOfX=1000; % The number of watermarks to be generated.
-watermarks=[400]; % Array of watermark numbers. Element must not exceed numOfX.
+watermarks=400; % watermark number. Element must not exceed numOfX.
 
 %% 1. Read image
 files = dir('input');
@@ -85,7 +85,10 @@ image10=crop(image1, 'cropped', 11, imageIndex, fileName);
 detectWatermark(image10, 'cropped', 11, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
 %% multiple watermarks
-image11=insertWatermark(image, 'multiple-watermarked', 12, [200,watermarks], Xarr, M, L, alpha, beta, imageIndex, fileName);
+image11=insertWatermark(image, 'multiple-watermarked', 12, 200, Xarr, M, L, alpha, beta, imageIndex, fileName);
+image11=insertWatermark(image11, 'multiple-watermarked', 12, 400, Xarr, M, L, alpha, beta, imageIndex, fileName);
+image11=insertWatermark(image11, 'multiple-watermarked', 12, 600, Xarr, M, L, alpha, beta, imageIndex, fileName);
+image11=insertWatermark(image11, 'multiple-watermarked', 12, 700, Xarr, M, L, alpha, beta, imageIndex, fileName);
 detectWatermark(image11, 'multiple-watermarked', 12, numOfX, Xarr, M, L, alpha, alphaBar, imageIndex, fileName);
 
 %% translation
